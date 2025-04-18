@@ -3,34 +3,145 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>Workout Tracker</title>
     <style>
-
         @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+        
+        :root {
+            --primary-color: #4CAF50;
+            --primary-dark: #45a049;
+            --error-color: #f44336;
+            --error-dark: #d32f2f;
+            --dark-bg: #121212;
+            --card-bg: rgba(30, 30, 30, 0.85);
+        }
+        
         body {
             margin: 0;
             padding: 0;
-            background-image: url('https://th.bing.com/th/id/OIP.YE6OatbRxOd4KKcqgylt9QHaEK?rs=1&pid=ImgDetMain');
+            /* COLOR SCHEMATIC ofr the main page, include an overlay and an image showing someone wokting out from the internet */
+            background: 
+                linear-gradient(rgba(15, 32, 39, 0.9), rgba(32, 58, 67, 0.9)),
+                url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
             background-size: cover;
             background-position: center;
+            background-attachment: fixed;
             color: white;
+            font-family: 'Arial', sans-serif;
+            min-height: 100vh;
         }
 
         nav {
-            background-color: #333;
-            padding: 10px;
+            /* Navigation bar at the top of the page, includes a sticky effect and a dark background */
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 15px;
             text-align: center;
+            backdrop-filter: blur(5px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
+        /* Navigation bar links and buttons */
         nav a {
             color: white;
-            margin: 0 15px;
+            margin: 0 20px;
+            text-decoration: none;
+            font-size: 1.1em;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover {
+            color: var(--primary-color);
             text-decoration: none;
         }
-        nav a:hover {
-            text-decoration: underline;
-        }
+        
         .container {
-            padding: 20px;
+            padding: 30px;
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            max-width: 800px;
+            margin: 30px auto;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        /* login box design for simple inputs */
+        .login-container {
+            max-width: 400px;
+            margin: 100px auto;
+            padding: 30px;
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        /* THe rest are just button designs I found online, can be changed to a more custom design later on, just used a tutorial */
+        input, button {
+            padding: 12px;
+            margin: 15px 0;
+            width: 100%;
+            box-sizing: border-box;
+            border-radius: 5px;
+            border: none;
+            font-size: 1em;
+        }
+        
+        input {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+        
+        button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        button:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        #logout-btn {
+            background-color: var(--error-color);
+            width: auto;
+            float: right;
+            padding: 8px 15px;
+            margin: -5px 0;
+        }
+        
+        #logout-btn:hover {
+            background-color: var(--error-dark);
+        }
+        
+        h1, h2 {
+            font-family: 'Bebas Neue', sans-serif;
+            letter-spacing: 1px;
+        }
+        
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        
+        #login-message {
+            text-align: center;
+            margin-top: 15px;
+            min-height: 20px;
         }
     </style>
 </head>
@@ -38,55 +149,186 @@
     <nav>
         <a href="#home">Home</a>
         <a href="#profile">Profile</a>
+        <button id="logout-btn" class="hidden">Logout</button>
     </nav>
 
-
-    <div id="home" class="container">
-        <h1>Welcome to Software from Group 8</h1>
-        <p>
-            ___ is a program that monitors and keeps track of exercises done using
-            Ultralytics YOLO11 technology.
-        </p>
-    </div>
-
-    <!-- Profile Section -->
-    <div id="profile" class="container" style="display: none;">
-        <h1>Your Profile</h1>
-        <p>Upload your MP4 video files here:</p>
-
-        <!-- File Upload Form -->
-        <form action="/upload" method="post" enctype="multipart/form-data">
-            <input type="file" name="videoFile" accept=".mp4" required>
-            <button type="submit">Upload Video</button>
+    <!-- login section-->
+    <div id="login-container" class="login-container">
+        <h2>Login Required</h2>
+        <form id="login-form">
+            <input type="text" id="username" placeholder="Username" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <button type="submit">Login</button>
         </form>
+        <p id="login-message"></p>
     </div>
 
-    <!-- JavaScript to handle navigation -->
-    <script>
-        // Function to show the selected section and hide others
-        function showSection(sectionId) {
-            // Hide all sections
-            document.querySelectorAll('.container').forEach(section => {
-                section.style.display = 'none';
-            });
+    <!-- majoority of the program is run on here, will workout how to change to tkinker once i get familiar -->
+    <div id="main-content" class="hidden">
+        <div id="home" class="container">
+            <h1>Welcome to WORKOUT TRACKER from Group 8</h1>
+            <p>
+                WORKOUT TRACKER is a program that monitors and keeps track of exercises done using
+                Ultralytics YOLO11 technology.
+            </p>
+        </div>
 
-            // Show the selected section
-            document.getElementById(sectionId).style.display = 'block';
+        <!-- Profile section, user is allowed to choose the workout being used -->
+        <div id="profile" class="container hidden">
+            <h1>Your Profile</h1>
+            <p>Upload your MP4 video files here:</p>
+            <!--  Type of workout, more added based on supports-->
+            <div>
+                <label for="workout-type">Select Workout Type:</label>
+                <select id="workout-type" required>
+                    <option value="">-- Select a workout --</option>
+                    <option value="pushups">Pushups</option>
+                    <option value="squats">Squats</option>
+                    <option value="legextension">Leg Extension</option>
+                    <option value="legpress">Leg Press</option>
+                    <option value="pullups">Pullups</option>
+                    <option value="abs">Abs</option>
+                </select>
+            </div>
+            
+
+
+             <!-- where you can upload the file-->
+             <form id="upload-form" enctype="multipart/form-data">
+                <p>Upload your workout video (MP4 format):</p>
+                <input type="file" id="video-file" name="videoFile" accept=".mp4" required>
+                <button type="submit">Analyze Workout</button>
+            </form>
+            
+            <!-- this is around where the results will be, most likely to change based on how sumi's backend -->
+            <div id="results-container" class="results-container hidden">
+                <h3>Workout Analysis Results</h3>
+                <div class="progress-container">
+                    <div id="progress-bar" class="progress-bar"></div>
+                </div>
+                <div class="workout-stats">
+                    <div>
+                        <span id="rep-count">0</span>
+                        <p>Reps Completed</p>
+                    </div>
+                    <div>
+                        <span id="accuracy">0%</span>
+                        <p>Form Accuracy</p>
+                    </div>
+                    <div>
+                        <span id="calories">0</span>
+                        <p>Calories Burned</p>
+                    </div>
+                </div>
+                <div id="detailed-results"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // main code that holds the major functionality of the program
+        const loginContainer = document.getElementById('login-container');
+        const mainContent = document.getElementById('main-content');
+        const logoutBtn = document.getElementById('logout-btn');
+        const loginForm = document.getElementById('login-form');
+        const loginMessage = document.getElementById('login-message');
+        
+        // THis would be where we implement some kind of backend database to encrypt the passwords and usernames
+        // For now, we will just use a simple object to store the users and passwords
+        const users = {
+            'user1': 'password1',
+        };
+
+        // Basic if statement that will let someone log in based on if the login credientials are good to go
+        // can be changed to a more secure method later on
+
+        let isLoggedIn = sessionStorage.getItem('isLoggedIn') === 'true';
+
+        // Initialize page based on login status based on the session storage and credientials on the user
+        
+        // LINE 237 HOLDS USERNAME AND PASSWORD, CAN BE CHANGED TO A MORE SECURE METHOD LATER ON
+        function initPage() {
+            if (isLoggedIn) {
+                loginContainer.classList.add('hidden');
+                mainContent.classList.remove('hidden');
+                logoutBtn.classList.remove('hidden');
+                showSection('home');
+            } else {
+                loginContainer.classList.remove('hidden');
+                mainContent.classList.add('hidden');
+                logoutBtn.classList.add('hidden');
+            }
         }
 
-        // Event listeners for navigation links
+        // Login function
+        function login(username, password) {
+            if (users[username] && users[username] === password) {
+                isLoggedIn = true;
+                sessionStorage.setItem('isLoggedIn', 'true');
+                initPage();
+                return true;
+            }
+            return false;
+        }
+
+        // Logout function
+        function logout() {
+            isLoggedIn = false;
+            sessionStorage.removeItem('isLoggedIn');
+            initPage();
+            loginForm.reset();
+            loginMessage.textContent = '';
+        }
+
+        // Show section function
+        function showSection(sectionId) {
+            if (!isLoggedIn) return;
+            
+            document.querySelectorAll('#main-content .container').forEach(section => {
+                section.classList.add('hidden');
+            });
+
+            document.getElementById(sectionId).classList.remove('hidden');
+        }
+
+        // BASIC EVENTS in case the user wants to log in or out of the program
+        // This is where the user is prompted on whether or not their crediential are correct and fully functional
+        loginForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            // Check if the username and password are correct
+            // If they are correct, the user will be logged in and the login message will be cleared
+            // If they are incorrect, the user will be prompted that the username and password are incorrect
+            if (login(username, password)) {
+                loginMessage.textContent = '';
+            } else {
+                loginMessage.textContent = 'Invalid username or password';
+                loginMessage.style.color = 'red';
+            }
+        });
+
+        logoutBtn.addEventListener('click', logout);
+        // This is where the user can click on the home and profile buttons to navigate to the different sections of the program
+        
+        // FUNCTIONS TO BE LATER ADDED TO PROGRAM ARE:
+        // CHANGE THE WORKOUT TYPE BASED ON THE SELECTED OPTION
+        // CHANGE THE VALUES OF THE TRACKED WORKOUT
+        // INCLUDE SOME KIND OF LOG SYSTEM OF ALL THE CHANGES DONE
+        // A GRAPH DEPICTING PROGRESS OVER TIME 
         document.querySelector('nav a[href="#home"]').addEventListener('click', function(event) {
             event.preventDefault();
-            showSection('home');
+            if (isLoggedIn) showSection('home');
         });
 
         document.querySelector('nav a[href="#profile"]').addEventListener('click', function(event) {
             event.preventDefault();
-            showSection('profile');
+            if (isLoggedIn) showSection('profile');
         });
 
-        // Show the home section by default
-        showSection('home');
+        // Initialize the page
+        initPage();
     </script>
 </body>
 </html>
