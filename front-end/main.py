@@ -20,7 +20,7 @@ class WorkoutTrackerApp(tk.Tk):
         
         # Set up the container for all frames
         self.container = tk.Frame(self)
-        self.container.pack(side="top", fill="both", expand=True)
+        self.container.pack(side="bottom", fill="both", expand=True)
         self.container.grid_rowconfigure(0, weight=1)
         self.container.grid_columnconfigure(0, weight=1)
         
@@ -42,23 +42,23 @@ class WorkoutTrackerApp(tk.Tk):
         self.navbar.pack(side="top", fill="x")
         
         # Home button
-        self.home_btn = tk.Button(self.navbar, text="Home", bg="#000000", fg="white", 
+        self.home_btn = tk.Button(self.navbar, text="HOME", bg="#000000", fg="white", 
                                   activebackground="#4CAF50", activeforeground="white",
-                                  bd=0, padx=20, pady=10, font=("Arial", 11),
+                                  bd=0, padx=20, pady=10, font=("Arial Bold", 11),
                                   command=lambda: self.show_frame("home"))
         self.home_btn.pack(side="left", padx=10)
         
         # Profile button
-        self.profile_btn = tk.Button(self.navbar, text="Profile", bg="#000000", fg="white", 
+        self.profile_btn = tk.Button(self.navbar, text="PROFILE", bg="#000000", fg="white", 
                                      activebackground="#4CAF50", activeforeground="white",
-                                     bd=0, padx=20, pady=10, font=("Arial", 11),
+                                     bd=0, padx=20, pady=10, font=("Arial Bold", 11),
                                      command=lambda: self.show_frame("profile"))
         self.profile_btn.pack(side="left", padx=10)
         
         # Logout button (initially hidden)
         self.logout_btn = tk.Button(self.navbar, text="Logout", bg="#f44336", fg="white", 
                                    activebackground="#d32f2f", activeforeground="white",
-                                   bd=0, padx=15, pady=8, font=("Arial", 10),
+                                   bd=0, padx=15, pady=8, font=("Arial Bold", 10),
                                    command=self.logout)
         self.logout_btn.pack(side="right", padx=15, pady=8)
         self.logout_btn.pack_forget()  # Hide initially

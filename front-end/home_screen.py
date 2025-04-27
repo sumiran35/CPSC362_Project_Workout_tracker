@@ -24,14 +24,14 @@ class HomeScreen(tk.Frame):
         
         # Header
         header = tk.Label(main_container, text="Welcome to WORKOUT TRACKER from Group 8", 
-                         font=("Arial", 22, "bold"), bg="#1E1E1E", fg="#4CAF50")
+                         font=("Arial", 25, "bold"), bg="#1E1E1E", fg="#4CAF50")
         header.pack(pady=(20, 30))
         
         # Description text
         description = tk.Label(main_container, 
                              text="WORKOUT TRACKER is a program that monitors and keeps track of exercises\n"
                                   "done using Ultralytics YOLO11 technology.",
-                             font=("Arial", 12), bg="#1E1E1E", fg="white", justify="left")
+                             font=("Arial BOLD", 18), bg="#1E1E1E", fg="white", justify="center")
         description.pack(pady=(0, 20))
         
         # Try to add an image
@@ -40,13 +40,8 @@ class HomeScreen(tk.Frame):
             content_frame = tk.Frame(main_container, bg="#1E1E1E")
             content_frame.pack(fill="both", expand=True, pady=20)
             
-            # Load workout image from URL
-            img_url = "https://images.pexels.com/photos/4498482/pexels-photo-4498482.jpeg"
-            with urllib.request.urlopen(img_url) as u:
-                raw_data = u.read()
-            
-            # Create image from downloaded data
-            image = Image.open(io.BytesIO(raw_data))
+            image = Image.open("gym_background.jpg")  # No full path needed
+    
             # Resize image to fit in the frame
             image = image.resize((400, 300), Image.Resampling.LANCZOS)
             photo = ImageTk.PhotoImage(image)
@@ -64,12 +59,11 @@ class HomeScreen(tk.Frame):
                 "Track your workouts with advanced AI technology!\n\n"
                 "• Monitor your form\n"
                 "• Count repetitions\n"
-                "• Calculate calories burned\n"
                 "• Track progress over time\n\n"
-                "Get started by logging in and navigating to the Profile section."
+                "Get started by navigating to the Profile section."
             )
             
-            info_label = tk.Label(info_frame, text=info_text, font=("Arial", 11),
+            info_label = tk.Label(info_frame, text=info_text, font=("Arial Bold", 16),
                                  bg="#1E1E1E", fg="white", justify="left", anchor="w")
             info_label.pack(fill="both", expand=True)
             

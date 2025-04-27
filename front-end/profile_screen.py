@@ -53,7 +53,7 @@ class ProfileScreen(tk.Frame):
         
         # Description
         description = tk.Label(scrollable_frame, text="Start your workout tracking session:", 
-                              font=("Arial", 12), bg="#1E1E1E", fg="white")
+                              font=("Arial Bold", 12), bg="#1E1E1E", fg="white")
         description.pack(pady=(0, 20), anchor="w")
         
         # Workout type selection
@@ -61,7 +61,7 @@ class ProfileScreen(tk.Frame):
         workout_frame.pack(fill="x", pady=10)
         
         workout_label = tk.Label(workout_frame, text="Select Workout Type:", 
-                                font=("Arial", 11), bg="#1E1E1E", fg="white")
+                                font=("Arial Bold", 11), bg="#1E1E1E", fg="white")
         workout_label.pack(side="left", padx=(0, 10))
         
         workout_options = ["", "Pushups", "Squats", "Leg Extension", "Leg Press", "Pullups", "Abs"]
@@ -91,14 +91,14 @@ class ProfileScreen(tk.Frame):
         self.rep_count_display.pack(pady=(0, 10))
         
         rep_label = tk.Label(self.results_container, text="Total Repetitions", 
-                            font=("Arial", 12), bg="#2A2A2A", fg="white")
+                            font=("Arial Bold", 12), bg="#2A2A2A", fg="white")
         rep_label.pack()
         
         # Reset button
         self.reset_button = tk.Button(self.results_container, text="Start New Workout", 
                                      bg="#333333", fg="white",
                                      activebackground="#4CAF50", activeforeground="white",
-                                     font=("Arial", 10), bd=0, padx=15, pady=5,
+                                     font=("Arial Bbold", 10), bd=0, padx=15, pady=5,
                                      command=self.reset_tracking)
         self.reset_button.pack(pady=20)
     
